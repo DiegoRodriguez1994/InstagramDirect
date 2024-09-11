@@ -17,6 +17,7 @@
 
         .container {
             display: flex;
+            flex-direction: column;
             width: 90%;
             max-width: 1200px;
             margin: 20px auto;
@@ -24,12 +25,11 @@
             gap: 20px;
         }
 
-        .form-section {
-            flex: 2;
+        .form-section, .summary-section {
+            width: 100%;
         }
 
         .summary-section {
-            flex: 1;
             background-color: hsl(134, 100%, 30%);
             border-radius: 10px;
             padding: 20px;
@@ -49,46 +49,47 @@
             font-family: 'Bitter', serif;
             font-weight: 800;
             color: #000;
-            text-align: left;
+            text-align: center;
             margin-bottom: 20px;
         }
 
         label {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             font-family: 'Bitter', serif;
             margin-bottom: 10px;
         }
 
         input, select, textarea {
-            flex: 1;
             padding: 8px;
-            margin-left: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
             font-family: 'Bitter', serif;
+            width: 100%;
         }
 
         .total-cost {
-            font-size: 42px;
+            font-size: 36px;
             font-family: 'Bitter', serif;
             font-weight: 800;
             margin: 20px 0;
+            text-align: center;
         }
 
         .contact-buttons {
             display: flex;
+            flex-direction: column;
             gap: 10px;
         }
 
         .contact-buttons button {
-            flex: 1;
             padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-family: 'Bitter', serif;
+            font-size: 16px;
         }
 
         .contact-buttons button:first-child {
@@ -172,15 +173,15 @@
             const piso = document.getElementById("pisos").selectedOptions[0].text;
 
             const mensaje = `
-            Cotización del Stand:
-            - Ancho: ${ancho} metros
-            - Alto: ${alto} metros
-            - Material: ${material}
-            - Luces: ${luces}
-            - Pantalla: ${pantalla}
-            - Gráfico (ancho): ${graficoAncho} metros
-            - Gráfico (alto): ${graficoAlto} metros
-            - Piso: ${piso}
+            *Cotización del Stand:*
+            -Ancho: ${ancho} metros
+            -Alto: ${alto} metros
+            -Material: ${material}
+            -Luces: ${luces}
+            -Pantalla: ${pantalla}
+            -Gráfico (ancho): ${graficoAncho} metros
+            -Gráfico (alto): ${graficoAlto} metros
+            -Piso: ${piso}
             `;
 
             const url = `https://wa.me/573028618806?text=${encodeURIComponent(mensaje)}`;
@@ -196,7 +197,6 @@
             calcularCosto();
         };
     </script>
-
 </head>
 <body>
     <div class="container">
