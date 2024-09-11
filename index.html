@@ -1,0 +1,184 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <meta name="description" content=""> 
+        <meta name="author" content=""> 
+        <title>New page</title>         
+        <link href="css/theme.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet"> 
+        <script>/* Pinegrow Interactions, do not remove */ (function(){try{if(!document.documentElement.hasAttribute('data-pg-ia-disabled')) { window.pgia_small_mq=typeof pgia_small_mq=='string'?pgia_small_mq:'(max-width:767px)';window.pgia_large_mq=typeof pgia_large_mq=='string'?pgia_large_mq:'(min-width:768px)';var style = document.createElement('style');var pgcss='html:not(.pg-ia-no-preview) [data-pg-ia-hide=""] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show=""] {opacity:1;visibility:visible;display:block;}';if(document.documentElement.hasAttribute('data-pg-id') && document.documentElement.hasAttribute('data-pg-mobile')) {pgia_small_mq='(min-width:0)';pgia_large_mq='(min-width:99999px)'} pgcss+='@media ' + pgia_small_mq + '{ html:not(.pg-ia-no-preview) [data-pg-ia-hide="mobile"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="mobile"] {opacity:1;visibility:visible;display:block;}}';pgcss+='@media ' + pgia_large_mq + '{html:not(.pg-ia-no-preview) [data-pg-ia-hide="desktop"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="desktop"] {opacity:1;visibility:visible;display:block;}}';style.innerHTML=pgcss;document.querySelector('head').appendChild(style);}}catch(e){console&&console.log(e);}})()</script>
+    </head>     
+    <body>
+        <script src="pgia/lib/pgia.js"></script>
+    </body>     
+    <!DOCTYPE html> 
+    <html lang="es"> 
+        <head> 
+            <meta charset="UTF-8"> 
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+            <title>Cotización de Stand</title>             
+            <link href="https://fonts.googleapis.com/css2?family=Avrile+Serif:wght@300&family=Bitter:wght@400;800&display=swap" rel="stylesheet"> 
+            <style>body, html { margin: 0; padding: 0; font-family: 'Bitter', serif; background-color: #f4f4f4; color: #333; line-height: 1.6; } .container { display: flex; flex-direction: column; width: 90%; max-width: 1200px; margin: 20px auto; padding: 20px; gap: 20px; } .form-section, .summary-section { width: 100%; } .summary-section { background-color: hsl(134, 100%, 30%); border-radius: 10px; padding: 20px; color: #fff; display: flex; flex-direction: column; justify-content: space-between; } .summary-section h2 { font-family: 'Bitter', serif; font-weight: 800; margin-top: 0; } h1 { font-family: 'Bitter', serif; font-weight: 800; color: #000; text-align: center; margin-bottom: 20px; } label { display: flex; flex-direction: column; font-family: 'Bitter', serif; margin-bottom: 10px; } input, select, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; font-family: 'Bitter', serif; width: 100%; } .total-cost { font-size: 36px; font-family: 'Bitter', serif; font-weight: 800; margin: 20px 0; text-align: center; } .contact-buttons { display: flex; flex-direction: column; gap: 10px; } .contact-buttons button { padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-family: 'Bitter', serif; font-size: 16px; } .contact-buttons button:first-child { background-color: #333; color: #fff; } .contact-buttons button:last-child { background-color: #fff; color: #333; border: 1px solid #333; }</style>             
+            <script>
+        function calcularCosto() {
+            const preciosMaterial = {
+                "madera": 1000000,
+                "carton": 800000,
+                "metal": 600000
+            };
+
+            const preciosExtras = {
+                "lucesBasicas": 200000,
+                "lucesLED": 300000,
+                "lucesRGB": 500000,
+                "pantalla32": 1000000,
+                "pantalla50": 1500000,
+                "graficos": 1500000,
+                "audio": 1200000
+            };
+
+            const preciosPisos = {
+                "madera": 150000,
+                "click": 140000,
+                "pvc": 180000
+            };
+
+            const ancho = parseFloat(document.getElementById("ancho").value) || 0;
+            const alto = parseFloat(document.getElementById("alto").value) || 0;
+            const material = document.getElementById("material").value;
+
+            let total = preciosMaterial[material] * ancho * alto;
+
+            // Luces
+            const luces = document.getElementById("luces").value;
+            if (luces) {
+                total += preciosExtras[luces];
+            }
+
+            // Pantallas
+            const pantalla = document.getElementById("pantallas").value;
+            if (pantalla) {
+                total += preciosExtras[pantalla];
+            }
+
+            // Gráficos
+            const graficosAncho = parseFloat(document.getElementById("graficoAncho").value) || 0;
+            const graficosAlto = parseFloat(document.getElementById("graficoAlto").value) || 0;
+            if (graficosAncho > 0 && graficosAlto > 0) {
+                total += preciosExtras["graficos"] * graficosAncho * graficosAlto;
+            }
+
+            // Pisos
+            const piso = document.getElementById("pisos").value;
+            if (piso) {
+                total += preciosPisos[piso] * ancho * alto;
+            }
+
+            // Mostrar el costo final
+            document.getElementById("costoFinal").innerText = "$" + total.toLocaleString() + " COP";
+        }
+
+        function enviarCotizacionWhatsApp() {
+            const ancho = document.getElementById("ancho").value;
+            const alto = document.getElementById("alto").value;
+            const material = document.getElementById("material").selectedOptions[0].text;
+            const luces = document.getElementById("luces").selectedOptions[0].text;
+            const pantalla = document.getElementById("pantallas").selectedOptions[0].text;
+            const graficoAncho = document.getElementById("graficoAncho").value;
+            const graficoAlto = document.getElementById("graficoAlto").value;
+            const piso = document.getElementById("pisos").selectedOptions[0].text;
+
+            const mensaje = `
+            *Cotización del Stand:*
+            -Ancho: ${ancho} metros
+            -Alto: ${alto} metros
+            -Material: ${material}
+            -Luces: ${luces}
+            -Pantalla: ${pantalla}
+            -Gráfico (ancho): ${graficoAncho} metros
+            -Gráfico (alto): ${graficoAlto} metros
+            -Piso: ${piso}
+            `;
+
+            const url = `https://wa.me/573028618806?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+
+        // Actualizar el costo automáticamente
+        document.addEventListener('input', calcularCosto);
+
+        window.onload = function() {
+            // Establecer el material predeterminado en madera
+            document.getElementById("material").value = "madera";
+            calcularCosto();
+        };
+    </script>             
+        </head>         
+        <body> 
+            <div class="container"> 
+                <div class="form-section"> 
+                    <h1>COTIZA TU STAND</h1> 
+                    <form id="cotizadorForm"> 
+                        <label for="ancho">Ancho (metros):
+                            <input type="number" id="ancho" name="ancho" step="0.1" placeholder="Ingrese el ancho" required> 
+                        </label>                         
+                        <label for="alto">Alto (metros):
+                            <input type="number" id="alto" name="alto" step="0.1" placeholder="Ingrese el alto" required> 
+                        </label>                         
+                        <label for="material">Seleccione el material:
+                            <select id="material" name="material"> 
+                                <option value="madera">Madera ($1,000,000 COP/m²)</option>                                 
+                                <option value="carton">Cartón ($800,000 COP/m²)</option>                                 
+                                <option value="metal">Metal ($600,000 COP/m²)</option>                                 
+                            </select>                             
+                        </label>                         
+                        <label for="luces">Luces:
+                            <select id="luces" name="luces"> 
+                                <option value="">Selecciona tipo de luces</option>                                 
+                                <option value="lucesBasicas">Luces Básicas ($200,000 COP)</option>                                 
+                                <option value="lucesLED">Luces LED ($300,000 COP)</option>                                 
+                                <option value="lucesRGB">Luces RGB ($500,000 COP)</option>                                 
+                            </select>                             
+                        </label>                         
+                        <label for="pantallas">Pantallas:
+                            <select id="pantallas" name="pantallas"> 
+                                <option value="">Selecciona tamaño de pantalla</option>                                 
+                                <option value="pantalla32">Pantalla 32" ($1,000,000 COP)</option>                                 
+                                <option value="pantalla50">Pantalla 50" ($1,500,000 COP)</option>                                 
+                            </select>                             
+                        </label>                         
+                        <h2>Gráficos</h2> 
+                        <label for="graficoAncho">Ancho (metros):
+                            <input type="number" id="graficoAncho" name="graficoAncho" step="0.1" placeholder="Ancho del gráfico"> 
+                        </label>                         
+                        <label for="graficoAlto">Alto (metros):
+                            <input type="number" id="graficoAlto" name="graficoAlto" step="0.1" placeholder="Alto del gráfico"> 
+                        </label>                         
+                        <h2>Pisos</h2> 
+                        <label for="pisos">Seleccione el tipo de piso:
+                            <select id="pisos" name="pisos"> 
+                                <option value="">Selecciona tipo de piso</option>                                 
+                                <option value="madera">Piso de Madera ($150,000 COP/m²)</option>                                 
+                                <option value="click">Piso Click ($140,000 COP/m²)</option>                                 
+                                <option value="pvc">Piso PVC ($180,000 COP/m²)</option>                                 
+                            </select>                             
+                        </label>                         
+                    </form>                     
+                </div>                 
+                <div class="summary-section" style="margin-top: 12px;"> 
+                    <h2>El costo total de tu stand</h2> 
+                    <div class="total-cost" id="costoFinal" style="text-align: left; font-size: 60px; padding-top: 0px; margin-top: -12px; margin-bottom: -10px;">$0 COP</div>                     
+                    <p style="margin-bottom: -17px;">Tu cotización incluye todos los elementos necesarios para el stand.</p> 
+                    <p>Queremos contactarte para ajustar los detalles y garantizar la mejor fabricación posible.</p> 
+                    <div class="contact-buttons"> 
+                        <button data-pg-ia='{"l":[{"name":"click","trg":"click"}]}' style="font-family: 'Avrile Serif'; font-size: 17px;">Contactar a un Profesional</button>                         
+                        <button onclick="enviarCotizacionWhatsApp()" style="font-family: 'Avrile Serif';">Enviar Cotización a WhatsApp</button>                         
+                    </div>                     
+                </div>                 
+            </div>             
+        </body>         
+    </html>
+</html>
