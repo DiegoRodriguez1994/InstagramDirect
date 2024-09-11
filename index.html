@@ -21,7 +21,104 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
             <title>Cotización de Stand</title>             
             <link href="https://fonts.googleapis.com/css2?family=Avrile+Serif:wght@300&family=Bitter:wght@400;800&display=swap" rel="stylesheet"> 
-            <style>body, html { margin: 0; padding: 0; font-family: 'Bitter', serif; background-color: #f4f4f4; color: #333; line-height: 1.6; } .container { display: flex; flex-direction: column; width: 90%; max-width: 1200px; margin: 20px auto; padding: 20px; gap: 20px; } .form-section, .summary-section { width: 100%; } .summary-section { background-color: hsl(134, 100%, 30%); border-radius: 10px; padding: 20px; color: #fff; display: flex; flex-direction: column; justify-content: space-between; } .summary-section h2 { font-family: 'Bitter', serif; font-weight: 800; margin-top: 0; } h1 { font-family: 'Bitter', serif; font-weight: 800; color: #000; text-align: center; margin-bottom: 20px; } label { display: flex; flex-direction: column; font-family: 'Bitter', serif; margin-bottom: 10px; } input, select, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; font-family: 'Bitter', serif; width: 100%; } .total-cost { font-size: 36px; font-family: 'Bitter', serif; font-weight: 800; margin: 20px 0; text-align: center; } .contact-buttons { display: flex; flex-direction: column; gap: 10px; } .contact-buttons button { padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-family: 'Bitter', serif; font-size: 16px; } .contact-buttons button:first-child { background-color: #333; color: #fff; } .contact-buttons button:last-child { background-color: #fff; color: #333; border: 1px solid #333; }</style>             
+            <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Bitter', serif;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 85%; /* Reducido del 90% al 85% */
+        max-width: 400px; /* Nuevo límite de ancho para móviles */
+        margin: 20px auto;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .form-section, .summary-section {
+        width: 100%;
+    }
+
+    .summary-section {
+        background-color: hsl(134, 100%, 30%);
+        border-radius: 10px;
+        padding: 20px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .summary-section h2 {
+        font-family: 'Bitter', serif;
+        font-weight: 800;
+        margin-top: 0;
+    }
+
+    h1 {
+        font-family: 'Bitter', serif;
+        font-weight: 800;
+        color: #000;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Bitter', serif;
+        margin-bottom: 10px;
+    }
+
+    input, select, textarea {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        font-family: 'Bitter', serif;
+        width: 100%;
+    }
+
+    .total-cost {
+        font-size: 36px;
+        font-family: 'Bitter', serif;
+        font-weight: 800;
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .contact-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .contact-buttons button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Bitter', serif;
+        font-size: 16px;
+    }
+
+    .contact-buttons button:first-child {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .contact-buttons button:last-child {
+        background-color: #fff;
+        color: #333;
+        border: 1px solid #333;
+    }
+</style>             
             <script>
         function calcularCosto() {
             const preciosMaterial = {
@@ -170,7 +267,7 @@
                 </div>                 
                 <div class="summary-section" style="margin-top: 12px;"> 
                     <h2>El costo total de tu stand</h2> 
-                    <div class="total-cost" id="costoFinal" style="text-align: left; font-size: 60px; padding-top: 0px; margin-top: -12px; margin-bottom: -10px;">$0 COP</div>                     
+                    <div class="total-cost" id="costoFinal" style="text-align: left; font-size: 40px; padding-top: 0px; margin-top: -12px; margin-bottom: -10px;">$0 COP</div>                     
                     <p style="margin-bottom: -17px;">Tu cotización incluye todos los elementos necesarios para el stand.</p> 
                     <p>Queremos contactarte para ajustar los detalles y garantizar la mejor fabricación posible.</p> 
                     <div class="contact-buttons"> 
