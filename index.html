@@ -1,3 +1,4 @@
+
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
@@ -144,10 +145,11 @@
             };
 
             const ancho = parseFloat(document.getElementById("ancho").value) || 0;
-            const alto = parseFloat(document.getElementById("alto").value) || 0;
-            const material = document.getElementById("material").value;
+    const alto = parseFloat(document.getElementById("alto").value) || 0;
+    const profundidad = parseFloat(document.getElementById("profundidad").value) || 0;
+    const material = document.getElementById("material").value;
 
-            let total = preciosMaterial[material] * ancho * alto;
+    let total = preciosMaterial[material] * ancho * alto * profundidad;
 
             // Luces
             const luces = document.getElementById("luces").value;
@@ -171,7 +173,7 @@
             // Pisos
             const piso = document.getElementById("pisos").value;
             if (piso) {
-                total += preciosPisos[piso] * ancho * alto;
+                total += preciosPisos[piso] * ancho * profundidad;
             }
 
             // Mostrar el costo final
@@ -179,30 +181,37 @@
         }
 
         function enviarCotizacionWhatsApp() {
-            const ancho = document.getElementById("ancho").value;
-            const alto = document.getElementById("alto").value;
-            const material = document.getElementById("material").selectedOptions[0].text;
-            const luces = document.getElementById("luces").selectedOptions[0].text;
-            const pantalla = document.getElementById("pantallas").selectedOptions[0].text;
-            const graficoAncho = document.getElementById("graficoAncho").value;
-            const graficoAlto = document.getElementById("graficoAlto").value;
-            const piso = document.getElementById("pisos").selectedOptions[0].text;
+    const ancho = document.getElementById("ancho").value;
+    const alto = document.getElementById("alto").value;
+    const profundidad = document.getElementById("profundidad").value;
+    const material = document.getElementById("material").selectedOptions[0].text;
+    const luces = document.getElementById("luces").selectedOptions[0].text;
+    const pantalla = document.getElementById("pantallas").selectedOptions[0].text;
+    const graficoAncho = document.getElementById("graficoAncho").value;
+    const graficoAlto = document.getElementById("graficoAlto").value;
+    const piso = document.getElementById("pisos").selectedOptions[0].text;
 
-            const mensaje = `
-            *Cotización del Stand:*
-            -Ancho: ${ancho} metros
-            -Alto: ${alto} metros
-            -Material: ${material}
-            -Luces: ${luces}
-            -Pantalla: ${pantalla}
-            -Gráfico (ancho): ${graficoAncho} metros
-            -Gráfico (alto): ${graficoAlto} metros
-            -Piso: ${piso}
-            `;
+    // Obtener el costo final
+    const costoFinal = document.getElementById("costoFinal").innerText;
 
-            const url = `https://wa.me/573028618806?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, '_blank');
-        }
+    const mensaje = `
+    *Cotización del Stand:*
+    - Ancho: ${ancho} metros
+    - Alto: ${alto} metros
+    - Profundidad: ${profundidad} metros
+    - Material: ${material}
+    - Luces: ${luces}
+    - Pantalla: ${pantalla}
+    - Gráfico (ancho): ${graficoAncho} metros
+    - Gráfico (alto): ${graficoAlto} metros
+    - Piso: ${piso}
+    - Costo Total: ${costoFinal}
+    `;
+
+    const url = `https://wa.me/573028618806?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
+
 
         // Actualizar el costo automáticamente
         document.addEventListener('input', calcularCosto);
@@ -224,6 +233,9 @@
                         </label>                         
                         <label for="alto">Alto (metros):
                             <input type="number" id="alto" name="alto" step="0.1" placeholder="Ingrese el alto" required> 
+ 			</label>                         
+                        <label for="profundidad">Profundidad (metros):
+                            <input type="number" id="profundidad" name="profundidad" step="0.1" placeholder="Ingrese el profundidad" required> 
                         </label>                         
                         <label for="material">Seleccione el material:
                             <select id="material" name="material"> 
